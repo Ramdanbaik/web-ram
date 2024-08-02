@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard User</title>
+    <link rel="stylesheet" href="baru.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div class="navbar">
+        <i class="bi bi-bank" onclick="toggleSidebar()"></i>
+        <h1>Muslimin</h1>
+        <i class="bi bi-person-circle"></i>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <div class="item" onclick="showPage('profile')"><i class="bi bi-person"></i> Profil</div>
+        <div class="item" onclick="showPage('attendance')"><i class="bi bi-calendar-check"></i> Kehadiran</div>
+        <div class="item" onclick="showPage('assessment')"><i class="bi bi-pencil-square"></i> Penilaian</div>
+        <div class="logout-item" onclick="logout()">
+            <i class="bi bi-box-arrow-left"></i> Logout
+        </div>
+    </div>
+    <div class="content" id="content">
+        <!-- Profil --> 
+        <div id="profile" class="page">
+            <!-- Profil details akan ditampilkan di sini -->
+            <p>Selamat Datang Para Manusia</p>
+            <h1>SmpMuslimin</h1>
+            <div id="summaryContainer">
+                <div class="class-summary">
+                    <!-- Kelas 7 -->
+                    <div class="class-column"><h3>7A</h3><p id="summary-7A">0 Siswa</p></div>
+                    <div class="class-column"><h3>7B</h3><p id="summary-7B">0 Siswa</p></div>
+                    <div class="class-column"><h3>7C</h3><p id="summary-7C">0 Siswa</p></div>
+                    <div class="class-column"><h3>7D</h3><p id="summary-7D">0 Siswa</p></div>
+                    <!-- Kelas 8 -->
+                    <div class="class-column"><h3>8A</h3><p id="summary-8A">0 Siswa</p></div>
+                    <div class="class-column"><h3>8B</h3><p id="summary-8B">0 Siswa</p></div>
+                    <div class="class-column"><h3>8C</h3><p id="summary-8C">0 Siswa</p></div>
+                    <div class="class-column"><h3>8D</h3><p id="summary-8D">0 Siswa</p></div>
+                    <!-- Kelas 9 -->
+                    <div class="class-column"><h3>9A</h3><p id="summary-9A">0 Siswa</p></div>
+                    <div class="class-column"><h3>9B</h3><p id="summary-9B">0 Siswa</p></div>
+                    <div class="class-column"><h3>9C</h3><p id="summary-9C">0 Siswa</p></div>
+                    <div class="class-column"><h3>9D</h3><p id="summary-9D">0 Siswa</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kehadiran -->
+        <div id="attendance" class="page" style="display: none;">
+            <h1>Data Kehadiran Anda</h1>
+            <label for="attendanceClassSelect">Pilih Kelas:</label>
+            <select id="attendanceClassSelect" onchange="updateAttendanceList()">
+                <option value="">Pilih Kelas</option>
+                <option value="7A">7A</option>
+                <option value="7B">7B</option>
+                <option value="7C">7C</option>
+                <option value="7D">7D</option>
+                <option value="8A">8A</option>
+                <option value="8B">8B</option>
+                <option value="8C">8C</option>
+                <option value="8D">8D</option>
+                <option value="9A">9A</option>
+                <option value="9B">9B</option>
+                <option value="9C">9C</option>
+                <option value="9D">9D</option>
+            </select>
+            <div id="attendanceListContainer">
+                <h2>Daftar Kehadiran</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kelas</th>
+                            <th>Nama</th>
+                            <th>Tanggal</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendanceList">
+                        <!-- Daftar kehadiran user akan ditampilkan di sini -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Penilaian -->
+        <div id="assessment" class="page" style="display: none;">
+            <h1>Penilaian Anda</h1>
+            <label for="assessmentClassSelect">Pilih Kelas:</label>
+            <select id="assessmentClassSelect" onchange="updateAssessmentList()">
+                <option value="">Pilih Kelas</option>
+                <option value="7A">7A</option>
+                <option value="7B">7B</option>
+                <option value="7C">7C</option>
+                <option value="7D">7D</option>
+                <option value="8A">8A</option>
+                <option value="8B">8B</option>
+                <option value="8C">8C</option>
+                <option value="8D">8D</option>
+                <option value="9A">9A</option>
+                <option value="9B">9B</option>
+                <option value="9C">9C</option>
+                <option value="9D">9D</option>
+            </select>
+            <div id="assessmentListContainer">
+                <h2>Daftar Nilai</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kelas</th>
+                            <th>Nama</th>
+                            <th>Tanggal</th>
+                            <th>Nilai</th>
+                        </tr>
+                    </thead>
+                    <tbody id="assessmentList">
+                        <!-- Daftar nilai user akan ditampilkan di sini -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="baru.js"></script>
+</body>
+</html>

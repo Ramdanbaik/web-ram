@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .user-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .user-list li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-list li div {
+            display: flex;
+            gap: 10px;
+        }
+
+        .edit-btn, .delete-btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .edit-btn {
+            background-color: #ffc107;
+            color: white;
+        }
+
+        .edit-btn:hover {
+            background-color: #e0a800;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+.set a{
+    padding: 5px;
+    color: white;
+    font-weight: 500;
+    background-color: #041a31;
+    font-size: 30px;
+    border-radius: 50px;
+}
+.set{
+    padding-right: 80%;
+   
+}
+    </style>
+</head>
+<body>
+    <div class="set">
+<a href="baru.html"><i class="bi bi-house"></i></a>
+    </div>
+    <div class="container" id="userSettings">
+        <h2>Admin Dashboard</h2>
+        <p id="welcomeMessage"></p>
+        <form id="addUserForm">
+            <input type="text" id="newUsername" placeholder="Username" required>
+            <input type="password" id="newPassword" placeholder="Password" required>
+            <select id="newRole" required>
+                <option value="">Pilih peran</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+            </select>
+            <button type="submit">Tambah Pengguna</button>
+        </form>
+    </div>
+    <div class="container">
+        <h2>Daftar Pengguna</h2>
+        <ul id="userList" class="user-list"></ul>
+    </div>
+    <script>
+        document.getElementById('addUserForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const newUsername = document.getElementById('newUsername').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const newRole = document.getElementById('newRole').value;
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            users.push({ username: newUsername, password: newPassword, role: newRole });
+            localStorage.setItem('users', JSON.stringify(users));
+
+            document.getElementById('addUserForm').reset();
+            loadUsers();
+        });
+
+        function loadUsers() {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const userList = document.getElementById('userList');
+            userList.innerHTML = '';
+            users.forEach((user, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span>Username: ${user.username}, Role: ${user.role}</span>
+                    <div>
+                        <button class="edit-btn" onclick="editUser(${index})">Edit</button>
+                        <button class="delete-btn" onclick="deleteUser(${index})">Hapus</button>
+                    </div>
+                `;
+                userList.appendChild(li);
+            });
+        }
+
+        function editUser(index) {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users[index];
+
+            const newUsername = prompt("Masukkan username baru:", user.username);
+            const newPassword = prompt("Masukkan password baru:", user.password);
+            const newRole = prompt("Masukkan peran baru (admin/user):", user.role);
+
+            if (newUsername && newPassword && newRole) {
+                users[index] = { username: newUsername, password: newPassword, role: newRole };
+                localStorage.setItem('users', JSON.stringify(users));
+                loadUsers();
+            }
+        }
+
+        function deleteUser(index) {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            users.splice(index, 1);
+            localStorage.setItem('users', JSON.stringify(users));
+            loadUsers();
+        }
+
+        function displayWelcomeMessage() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const welcomeMessage = document.getElementById('welcomeMessage');
+            if (currentUser && currentUser.role === 'admin') {
+                welcomeMessage.textContent = `Selamat datang, Admin ${currentUser.username}!`;
+            }
+        }
+
+        window.onload = function() {
+            loadUsers();
+            displayWelcomeMessage();
+        }
+    </script>
+</body>
+</html>

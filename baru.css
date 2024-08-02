@@ -1,0 +1,432 @@
+/* Reset and base styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: left; /* Adjusted to space out elements */
+    align-items: center;
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1001; /* Ensure navbar is above other elements */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar i {
+    font-size: 30px;
+    padding-left: 19%;
+    cursor: pointer;
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    padding-left: 1%;
+}
+
+.navbar a {
+    padding-left: 57%; /* Adjusted to better position the username */
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 250px;
+    background-color: #34495e;
+    color: #ecf0f1;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: translateX(0);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    padding-top: 60px; /* Adjusted for navbar height */
+    z-index: 1000; /* Ensure sidebar is below navbar */
+}
+
+.sidebar .item {
+    padding: 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid #2c3e50;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar .item:hover {
+    background-color: #2c3e50;
+}
+
+.sidebar .logout-item {
+    margin-top: auto; /* Pushes the logout item to the bottom */
+    padding: 1rem;
+    cursor: pointer;
+    border-top: 1px solid #2c3e50;
+    transition: background-color 0.3s ease;
+    background-color: #fa1900;
+}
+
+.sidebar .logout-item:hover {
+    background-color: #e74c3c; /* Red background on hover for logout item */
+}
+
+.sidebar.collapsed {
+    transform: translateX(-100%);
+}
+
+/* Content area styles */
+.content {
+    transition: margin-left 0.3s ease; /* Smooth transition for content shift */
+    margin-left: 250px; /* Adjusted for sidebar width */
+}
+
+.content.shifted {
+    margin-left: 0; /* Shifts content when sidebar is collapsed */
+}
+
+
+/* Main content styles */
+.content  {
+    margin-left: 250px;
+    padding: 1rem;
+    transition: margin-left 0.3s ease;
+    
+}
+
+.content .page {
+    padding: 3rem;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.content h1 {
+    margin-top: 0;
+}
+
+
+.content .page h1{
+    font-size: 50px;
+
+}
+
+/* Form styles */
+.container{
+    padding-left: 20%;
+}
+.form-container {
+    margin-bottom: 2rem;
+    padding-top: 10%;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+   
+    
+   
+   
+}
+
+.form-container h2 {
+    margin-top: 0;
+   
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container label {
+    margin: 0.5rem 0 0.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-container input,
+.form-container select {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-container button {
+    padding: 0.5rem;
+    background-color: #2980b9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+    background-color: #3498db;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+}
+
+table th, table td {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+table th {
+    background-color: #2980b9;
+    color: #fff;
+}
+
+/* Styling umum untuk Ringkasan Jumlah Siswa per Kelas */
+.class-summary {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping to maintain horizontal alignment */
+    overflow-x: auto; /* Enable horizontal scroll if needed */
+    gap: 10px; /* Space between columns */
+    margin-bottom: 20px;
+}
+
+.class-column {
+    background-color: #2c3e50;
+    color: white;
+    border-top: 5px solid yellow;
+    border-left: 10px solid red;
+    border-radius: 8px;
+    padding: 15px;
+    min-width: 150px; /* Minimum width for columns to prevent them from being too narrow */
+    flex: 0 0 auto; /* Prevent columns from shrinking */
+    text-align: center;
+}
+
+.class-column h3 {
+    margin: 0;
+    color: white;
+    border-bottom: 4px solid red;
+}
+
+.class-column p {
+    font-size: 18px; /* Slightly smaller font size on mobile */
+    margin: 10px 0;
+    color: #007bff;
+}
+
+button {
+   
+    background-color: red;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    border: 1px solid yellow;
+   
+}
+
+button:hover {
+    background-color: #f03621;
+}
+
+/* Sidebar Close Button */
+.sidebar-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* Navbar Toggle Button */
+.navbar-toggle {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Konten */
+.content {
+    margin-left: 250px;
+    padding: 8px;
+    flex-grow: 1;
+}
+#dataDisplay {
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+  
+
+
+.form-container {
+    max-width: 900px;
+    margin: 12 auto;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   
+}
+
+.form-container h2 {
+    margin-bottom: 1rem;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container label {
+    margin: 0.5rem 0;
+}
+
+.form-container input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-container button {
+    padding: 0.5rem;
+    border: none;
+    background-color: #2c3e50;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: #34495e;
+}
+
+.form-container p {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+/* Gaya untuk container utama */
+.container {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.set{
+    color: white;
+    padding-left: 15%;
+}
+
+
+/* Media Queries untuk Responsif */
+@media (max-width: 768px) {
+    .navbar {
+        justify-content: center;
+    }
+   
+    .container{
+        padding-left: 0%;
+    }
+    .form-container{
+        padding-left: 20%;
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+    .form-container{
+        padding-right: 20%;
+        
+    }
+
+    .sidebar {
+        width: 100%;
+        transform: translateX(-100%);
+    }
+
+    .content {
+        margin-left: 0;
+   
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .sidebar.open {
+        transform: translateX(0);
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .navbar button {
+        display: block;
+    }
+
+    .sidebar {
+        text-align: center;
+        border-radius: 1000px ;
+        width: 55%;
+        height: 50%;
+        transform: translateX(-100%);
+        z-index: 1000;
+        top: 60px; /* Adjusted for navbar height */
+        border: 4px solid red;
+        justify-content: center;
+        padding-top: 10%;
+    }
+
+    .sidebar.collapsed {
+        transform: translateX(0);
+       
+    }
+
+    .content {
+        margin-left: 0;
+        
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem;
+        position: fixed;
+        width: 100%;
+    }
+}
+/* Media Queries untuk Responsif pada Mobile */
+@media (max-width: 768px) {
+    .class-summary {
+        flex-direction: row; /* Align columns horizontally on small screens */
+        overflow-x: auto; /* Enable horizontal scroll if necessary */
+    }
+
+    .class-column {
+        flex: 0 0 auto; /* Prevent columns from shrinking */
+        width: 150px; /* Set a fixed width for each column */
+    }
+   
+}
